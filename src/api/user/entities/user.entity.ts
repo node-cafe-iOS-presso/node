@@ -15,6 +15,12 @@ export class User {
   @Column({ type: 'varchar' })
   token!: string;
 
+  @Column({ type: 'varchar' })
+  name!: string;
+
+  @Column({ type: 'text', nullable: true })
+  userCoverImage!: string | null;
+
   @CreateDateColumn()
   createdAt!: Date;
 

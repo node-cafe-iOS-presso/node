@@ -4,4 +4,8 @@ export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
   token!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  name!: string;
 }
