@@ -3,21 +3,22 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
-  Delete,
   HttpCode,
   HttpStatus,
 } from '@nestjs/common';
 import { ModelService } from './model.service';
 import { CreateModelDto } from './dto/create-model.dto';
-import { UpdateModelDto } from './dto/update-model.dto';
 import { Model } from './entities/model.entity';
-import { UserId } from 'src/decorators/user-id.decorator';
+import { UserToken } from 'src/decorators/user-token.decorator';
+import { UserService } from '../user/user.service';
 
 @Controller('model')
 export class ModelController {
-  constructor(private readonly modelService: ModelService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly modelService: ModelService,
+  ) {}
 
   /**
    * @summary 모델 생성하기 API
@@ -27,10 +28,11 @@ export class ModelController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async create(
-    @UserId() userId: string,
+    @UserToken() userToken: string,
     @Body() modelData: CreateModelDto,
   ): Promise<{ newModelId: number }> {
-    return await this.modelService.create(userId, modelData);
+    const user = await this.userService.findOneByToken(userToken);
+    return await this.modelService.create(user.id, modelData);
   }
 
   @Get()
@@ -38,30 +40,30 @@ export class ModelController {
     return this.modelService.findAll();
   }
 
-  @Get('/user/:user')
-  async findUserAll(@Param('user') userId: string): Promise<Model[]> {
-    return this.modelService.findUserAll(userId);
-  }
+  // @Get('/user/:user')
+  // async findUserAll(@Param('user') userId: string): Promise<Model[]> {
+  //   return this.modelService.findUserAll(userId);
+  // }
 
   @Get('/id/:id')
   async findOne(@Param('id') modelId: number): Promise<Model> {
     return this.modelService.findOne(modelId);
   }
 
-  @Patch('/:user/:id')
-  async update(
-    @Param('id') modelId: number,
-    @Param('user') userId: string,
-    @Body() updateData: UpdateModelDto,
-  ) {
-    return this.modelService.update(modelId, userId, updateData);
-  }
+  // @Patch('/:user/:id')
+  // async update(
+  //   @Param('id') modelId: number,
+  //   @Param('user') userId: string,
+  //   @Body() updateData: UpdateModelDto,
+  // ) {
+  //   return this.modelService.update(modelId, userId, updateData);
+  // }
 
-  @Delete('/:user/:id')
-  async remove(
-    @Param('id') modelId: number,
-    @Param('user') userId: string,
-  ): Promise<Model[]> {
-    return this.modelService.remove(modelId, userId);
-  }
+  // @Delete('/:user/:id')
+  // async remove(
+  //   @Param('id') modelId: number,
+  //   @Param('user') userId: string,
+  // ): Promise<Model[]> {
+  //   return this.modelService.remove(modelId, userId);
+  // }
 }

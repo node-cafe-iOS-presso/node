@@ -13,8 +13,8 @@ export class Model {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({ type: 'varchar' })
-  userId!: string; // 모델을 생성한 사용자 아이디
+  @Column({ type: 'int' })
+  userId!: number; // 모델을 생성한 사용자 아이디
 
   @Column({ type: 'varchar' })
   name!: string; // 모델 이름
