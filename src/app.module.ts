@@ -1,17 +1,19 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserModule } from './user/user.module';
-import { ModelModule } from './model/model.module';
-import { BoardModule } from './board/board.module';
+import { UserModule } from './api/user/user.module';
+import { ModelModule } from './api/model/model.module';
+import { BoardModule } from './api/board/board.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Model } from './model/entities/model.entity';
-import { ChatGptModule } from './chatgpt/chatgpt.module';
+import { Model } from './api/model/entities/model.entity';
+import { ChatGptModule } from './api/chatgpt/chatgpt.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.DB_HOST,
