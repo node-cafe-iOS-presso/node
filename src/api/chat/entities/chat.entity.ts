@@ -15,11 +15,14 @@ export class Chat {
   @Column({ type: 'int' })
   chatRoomId!: number;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', nullable: true })
   senderId!: number;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', nullable: true })
   receiverId!: number;
+
+  @Column({ type: 'int' })
+  modelId!: number;
 
   @Column({ type: 'text' })
   message!: string;

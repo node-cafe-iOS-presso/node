@@ -9,6 +9,7 @@ import { Model } from './api/model/entities/model.entity';
 import { ChatGptModule } from './api/chatgpt/chatgpt.module';
 import { User } from './api/user/entities/user.entity';
 import { Chat } from './api/chat/entities/chat.entity';
+import { ChatModule } from './api/chat/chat.module';
 import { ChatRoom } from './api/chat/entities/chat-room.entity';
 
 @Module({
@@ -29,6 +30,7 @@ import { ChatRoom } from './api/chat/entities/chat-room.entity';
     UserModule,
     ModelModule,
     ChatGptModule,
+    ChatModule,
   ],
   controllers: [AppController],
   providers: [AppService],

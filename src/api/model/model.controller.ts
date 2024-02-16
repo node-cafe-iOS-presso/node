@@ -33,7 +33,7 @@ export class ModelController {
     @UserToken() userToken: string,
     @Body() modelData: CreateModelDto,
   ): Promise<ICreateModel> {
-    const user = await this.userService.findOneByToken(userToken);
+    const user = await this.userService.findOne(userToken);
     return await this.modelService.create(user.id, modelData);
   }
 
