@@ -1,9 +1,5 @@
 import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-
-export enum EStatusColumn {
-  ACTIVE = 'ACTIVE',
-  INACTIVE = 'INACTIVE',
-}
+import { EStatusColumn } from '../types';
 
 export enum EModelTone {
   FRIENDLY = '친근한',
