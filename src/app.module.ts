@@ -3,7 +3,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './api/user/user.module';
 import { ModelModule } from './api/model/model.module';
-import { BoardModule } from './api/board/board.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Model } from './api/model/entities/model.entity';
@@ -27,7 +26,6 @@ import { User } from './api/user/entities/user.entity';
     }),
     UserModule,
     ModelModule,
-    BoardModule,
     ChatGptModule,
   ],
   controllers: [AppController],
