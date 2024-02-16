@@ -6,19 +6,31 @@ import {
   Patch,
   Param,
   Delete,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 import { ModelService } from './model.service';
 import { CreateModelDto } from './dto/create-model.dto';
 import { UpdateModelDto } from './dto/update-model.dto';
 import { Model } from './entities/model.entity';
+import { UserId } from 'src/decorators/user-id.decorator';
 
 @Controller('model')
 export class ModelController {
   constructor(private readonly modelService: ModelService) {}
 
+  /**
+   * @summary 모델 생성하기 API
+   * @author  이강욱
+   * @url     [POST] /model
+   */
   @Post()
-  async create(@Body() modelData: CreateModelDto): Promise<Model> {
-    return await this.modelService.create(modelData);
+  @HttpCode(HttpStatus.CREATED)
+  async create(
+    @UserId() userId: string,
+    @Body() modelData: CreateModelDto,
+  ): Promise<{ newModelId: number }> {
+    return await this.modelService.create(userId, modelData);
   }
 
   @Get()
