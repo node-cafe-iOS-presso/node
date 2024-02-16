@@ -30,6 +30,9 @@ export class ModelService {
     console.log(result);
 
     // 채팅 DB에 저장
+    // await this.modelChatRepository.save({
+    //   modelId: newModelId,
+    // });
 
     return {
       newModelId,
