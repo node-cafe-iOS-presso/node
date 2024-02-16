@@ -12,6 +12,7 @@ import { CreateModelDto } from './dto/create-model.dto';
 import { Model } from './entities/model.entity';
 import { UserToken } from 'src/decorators/user-token.decorator';
 import { UserService } from '../user/user.service';
+import { ICreateModel } from './types';
 
 @Controller('model')
 export class ModelController {
@@ -24,13 +25,14 @@ export class ModelController {
    * @summary 모델 생성하기 API
    * @author  이강욱
    * @url     [POST] /model
+   * @returns { Promise<ICreateModel> }
    */
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async create(
     @UserToken() userToken: string,
     @Body() modelData: CreateModelDto,
-  ): Promise<{ newModelId: number }> {
+  ): Promise<ICreateModel> {
     const user = await this.userService.findOneByToken(userToken);
     return await this.modelService.create(user.id, modelData);
   }

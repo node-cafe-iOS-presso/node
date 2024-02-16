@@ -4,37 +4,68 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Model } from './entities/model.entity';
 import { Repository } from 'typeorm';
 import { ChatGptService } from '../chatgpt/chatgpt.service';
+import { ChatRoom } from '../chat/entities/chat-room.entity';
+import { Chat } from '../chat/entities/chat.entity';
+import { ICreateModel } from './types';
 
 @Injectable()
 export class ModelService {
   constructor(
     @InjectRepository(Model)
     private modelsRepository: Repository<Model>,
+    @InjectRepository(ChatRoom)
+    private chatRoomRepository: Repository<ChatRoom>,
+    @InjectRepository(Chat)
+    private chatRepository: Repository<Chat>,
     private readonly chatGptService: ChatGptService,
   ) {}
 
   async create(
     userId: number,
     modelData: CreateModelDto,
-  ): Promise<{ newModelId: number }> {
+  ): Promise<ICreateModel> {
     const { id: newModelId } = await this.modelsRepository.save({
       userId,
       ...modelData,
     });
 
     // ChatGPT에게 질문하고 답변받기
-    const result = await this.chatGptService.createQuestionWithPrompt(
+    const response = await this.chatGptService.createQuestionWithPrompt(
       this.generateModelPrompt(modelData),
     );
-    console.log(result);
 
     // 채팅 DB에 저장
-    // await this.modelChatRepository.save({
-    //   modelId: newModelId,
-    // });
+    const { id: newChatRoomId } = await this.chatRoomRepository.save({
+      userId,
+      modelId: newModelId,
+    });
+
+    // 채팅 저장 - 사용자가 보낸것
+    const { id: userSendMessageId } = await this.chatRepository.save({
+      chatRoomId: newChatRoomId,
+      senderId: userId,
+      receiverId: newModelId,
+      message: modelData.question,
+    });
+    // 채팅 저장 - 모델이 답변한 것
+    const { id: modelAnswerMessageId } = await this.chatRepository.save({
+      chatRoomId: newChatRoomId,
+      senderId: newModelId,
+      receiverId: userId,
+      message: response,
+    });
 
     return {
       newModelId,
+      newChatRoomId,
+      userSend: {
+        id: userSendMessageId,
+        message: modelData.question,
+      },
+      modelAnswer: {
+        id: modelAnswerMessageId,
+        message: response,
+      },
     };
   }
 
