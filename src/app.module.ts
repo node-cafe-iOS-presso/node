@@ -7,6 +7,7 @@ import { BoardModule } from './board/board.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Model } from './model/entities/model.entity';
+import { ChatGptModule } from './chatgpt/chatgpt.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { Model } from './model/entities/model.entity';
     UserModule,
     ModelModule,
     BoardModule,
+    ChatGptModule,
   ],
   controllers: [AppController],
   providers: [AppService],
