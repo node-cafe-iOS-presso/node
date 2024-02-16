@@ -10,13 +10,13 @@ import {
 @Entity({ name: 'model' })
 export class Model {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
-  @Column({ type: 'varchar', nullable: false, unique: true })
-  user: string;
+  @Column({ type: 'varchar', nullable: false })
+  userId!: string;
 
-  @Column({ type: 'varchar', nullable: false, unique: false })
-  name: string;
+  @Column({ type: 'varchar', nullable: false })
+  name!: string;
 
   @Column({ type: 'varchar', nullable: false, unique: false })
   person: string;
