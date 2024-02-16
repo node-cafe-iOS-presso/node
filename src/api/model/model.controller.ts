@@ -29,10 +29,8 @@ export class ModelController {
   async create(
     @UserId() userId: string,
     @Body() modelData: CreateModelDto,
-  ): Promise<any> {
-    console.log(userId);
-    console.log(modelData);
-    // return await this.modelService.create(modelData);
+  ): Promise<{ newModelId: number }> {
+    return await this.modelService.create(userId, modelData);
   }
 
   @Get()

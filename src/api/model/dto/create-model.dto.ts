@@ -1,4 +1,9 @@
-import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+
+export enum EStatusColumn {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+}
 
 export enum EModelTone {
   FRIENDLY = '친근한',
@@ -19,12 +24,18 @@ export enum EReaderLevel {
   EXPERT = '전문가',
 }
 
-export class CreateModelDto {
-  readonly user: string;
+export enum ERelationship {
+  AWKWARD = '어색한 관계',
+  CELEBRITY = '팬과 연예인 관계',
+  COUPLE = '연인 관계',
+  FAMILY = '가족 관계',
+  FRIEND = '친구 관계',
+}
 
+export class CreateModelDto {
   @IsString()
   @IsNotEmpty()
-  readonly name!: string; // Chatter 이름
+  readonly name!: string; // Chatter 이름 (모델 이름)
 
   @IsString()
   @IsNotEmpty()
@@ -41,4 +52,20 @@ export class CreateModelDto {
   @IsEnum(EReaderLevel)
   @IsNotEmpty()
   readonly readerLevel!: EReaderLevel; // Chatter 대화 난이도
+
+  @IsEnum(ERelationship)
+  @IsOptional()
+  readonly relationship: string | null = null; // Chatter 관계
+
+  @IsEnum(EStatusColumn)
+  @IsNotEmpty()
+  readonly isInFormal: EStatusColumn; // 추가 옵션 - 반말 모드 여부
+
+  @IsString()
+  @IsOptional()
+  readonly modelCoverImage: string | null = null; // Chatter 대표 이미지
+
+  @IsString()
+  @IsNotEmpty()
+  readonly question!: string; // 처음 GPT한테 할 질문
 }

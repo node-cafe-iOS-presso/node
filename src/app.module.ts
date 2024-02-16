@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Model } from './api/model/entities/model.entity';
 import { ChatGptModule } from './api/chatgpt/chatgpt.module';
+import { User } from './api/user/entities/user.entity';
 
 @Module({
   imports: [
@@ -21,7 +22,7 @@ import { ChatGptModule } from './api/chatgpt/chatgpt.module';
       username: process.env.DB_USER,
       password: process.env.DB_PASS,
       database: process.env.DB_DATABASE,
-      entities: [Model],
+      entities: [Model, User],
       synchronize: Boolean(process.env.DB_SYNCHRONIZE),
     }),
     UserModule,
