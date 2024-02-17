@@ -13,11 +13,14 @@ import { ChatRoom } from './entities/chat-room.entity';
 import { PostChatMessageDto } from './dto/post-chat-message.dto';
 import { Chat } from './entities/chat.entity';
 import { UserToken } from 'src/decorators/user-token.decorator';
+import { UserService } from '../user/user.service';
 
 @Controller('chat')
 export class ChatController {
-  userService: any;
-  constructor(private readonly chatService: ChatService) {}
+  constructor(
+    private readonly chatService: ChatService,
+    private readonly userService: UserService,
+  ) {}
 
   @Post('/chatroom')
   async createChatRoom(
