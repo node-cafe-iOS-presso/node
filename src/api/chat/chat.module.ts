@@ -6,9 +6,14 @@ import { Chat } from './entities/chat.entity';
 import { ChatRoom } from './entities/chat-room.entity';
 import { ChatRoomService } from './services/chat-room.service';
 import { UserModule } from '../user/user.module';
+import { ChatGptModule } from '../chatgpt/chatgpt.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Chat, ChatRoom]), UserModule],
+  imports: [
+    TypeOrmModule.forFeature([Chat, ChatRoom]),
+    UserModule,
+    ChatGptModule,
+  ],
   controllers: [ChatController],
   providers: [ChatService, ChatRoomService],
   exports: [TypeOrmModule, ChatService, ChatRoomService],

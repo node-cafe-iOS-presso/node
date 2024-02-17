@@ -44,4 +44,34 @@ export class ChatGptService {
       );
     }
   }
+
+  async createQuestionWithMultiplePrompt(
+    prompt: Array<{ role: string; content: string }>,
+  ): Promise<string> {
+    const header = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.apiKey}`,
+    };
+
+    try {
+      const response = await axios.post(
+        this.apiUrl,
+        {
+          model: 'gpt-3.5-turbo',
+          messages: prompt,
+        },
+        {
+          headers: header,
+        },
+      );
+
+      // console.log(response);
+      return response.data.choices[0].message.content;
+    } catch (err) {
+      console.log(err);
+      throw new InternalServerErrorException(
+        'ChatGPT에게 질문하는 중 에러가 발생했습니다.',
+      );
+    }
+  }
 }

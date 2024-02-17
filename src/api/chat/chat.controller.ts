@@ -16,6 +16,7 @@ import { UserToken } from 'src/decorators/user-token.decorator';
 import { UserService } from '../user/user.service';
 import { CreateChatRoomDto } from './dto/create-chat-room.dto';
 import { ChatRoom } from './entities/chat-room.entity';
+import { PostChatMessageDto } from './dto/post-chat-message.dto';
 
 @Controller('chat')
 export class ChatController {
@@ -56,6 +57,16 @@ export class ChatController {
 
     const user = await this.userService.findOne(userToken);
     return await this.chatRoomService.findChatRoomById(id, user.id);
+  }
+
+  @Post('messages')
+  @HttpCode(HttpStatus.CREATED)
+  async postChatMessage(
+    @UserToken() userToken: string,
+    @Body() body: PostChatMessageDto,
+  ) {
+    const user = await this.userService.findOne(userToken);
+    return await this.chatService.createChatMessage(user.id, body);
   }
 
   // @Get('/chat/:roomId')
