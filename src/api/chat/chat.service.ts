@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { CreateChatDto } from './dto/create-chat.dto';
 import { CreateChatRoomDto } from './dto/create-chat-room.dto';
 import { ChatRoom } from './entities/chat-room.entity';
 import { Chat } from './entities/chat.entity';
@@ -13,19 +12,27 @@ export class ChatService {
     @InjectRepository(ChatRoom)
     private readonly chatRoomRepository: Repository<ChatRoom>,
   ) {}
-  async createChat(createChatData: CreateChatDto): Promise<Chat[]> {
-    const newChat = await this.chatRepository.create(createChatData);
-  }
 
+  // async createChat(createChatData: CreateChatDto): Promise<Chat> {
+  //   const newChat = this.chatRepository.create(createChatData);
+  //   return await this.chatRepository.save(newChat);
+  // }
+
+  /**
+   * @summary 채팅방 생성 API Service
+   * @param createRoomData
+   * @returns
+   */
   async createChatRoom(createRoomData: CreateChatRoomDto): Promise<ChatRoom> {
     const room = await this.findOneRoom(
       createRoomData.userId,
       createRoomData.modelId,
     );
+
     if (room) return room;
     else {
-      const newRoom = await this.chatRoomRepository.create(createRoomData);
-      return await this.chatRoomRepository.create(createRoomData);
+      const newRoom = this.chatRoomRepository.create(createRoomData);
+      return await this.chatRoomRepository.save(newRoom);
     }
   }
 
@@ -63,4 +70,6 @@ export class ChatService {
   async findAllRoom(): Promise<ChatRoom[]> {
     return await this.chatRoomRepository.find();
   }
+
+  // async findChatMessagesByRoom(roomId: number) {}
 }
