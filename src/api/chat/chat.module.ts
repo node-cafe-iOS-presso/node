@@ -4,7 +4,6 @@ import { ChatController } from './chat.controller';
 import { ChatService } from './chat.service';
 import { Chat } from './entities/chat.entity';
 import { ChatRoom } from './entities/chat-room.entity';
-import { ChatRoomService } from './services/chat-room.service';
 import { UserModule } from '../user/user.module';
 import { ChatGptModule } from '../chatgpt/chatgpt.module';
 
@@ -15,7 +14,7 @@ import { ChatGptModule } from '../chatgpt/chatgpt.module';
     ChatGptModule,
   ],
   controllers: [ChatController],
-  providers: [ChatService, ChatRoomService],
-  exports: [TypeOrmModule, ChatService, ChatRoomService],
+  providers: [ChatService],
+  exports: [TypeOrmModule, ChatService],
 })
 export class ChatModule {}
