@@ -36,10 +36,18 @@ export class ChatService {
     }
   }
 
-  async findChat(rooomId: number): Promise<Chat[]> {
+  async findall(): Promise<Chat[]> {
+    return await this.chatRepository.find();
+  }
+
+  async findall2(): Promise<ChatRoom[]> {
+    return await this.chatRoomRepository.find();
+  }
+
+  async findChat(roomId: number): Promise<Chat[]> {
     return await this.chatRepository.find({
       where: {
-        chatRoomId: rooomId,
+        chatRoomId: roomId,
       },
       order: {
         updatedAt: 'DESC',
@@ -70,6 +78,4 @@ export class ChatService {
   async findAllRoom(): Promise<ChatRoom[]> {
     return await this.chatRoomRepository.find();
   }
-
-  // async findChatMessagesByRoom(roomId: number) {}
 }

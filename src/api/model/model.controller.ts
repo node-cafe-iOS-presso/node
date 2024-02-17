@@ -58,7 +58,4 @@ export class ModelController {
   async findOne(@Param('id') modelId: number): Promise<Model> {
     return this.modelService.findOne(modelId);
   }
-
-  // 최근 진행한 커피챗
-  // 유명인사 모델
 }
