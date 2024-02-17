@@ -23,4 +23,6 @@ export class ChatService {
   remove(id: number) {
     return `This action removes a #${id} chat`;
   }
+
+  async findChatMessagesByRoom(roomId: number) {}
 }
