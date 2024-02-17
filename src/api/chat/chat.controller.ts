@@ -11,10 +11,11 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import { ChatService } from './chat.service';
-import { CreateChatDto } from './dto/create-chat.dto';
 import { ChatRoomService } from './services/chat-room.service';
 import { UserToken } from 'src/decorators/user-token.decorator';
 import { UserService } from '../user/user.service';
+import { CreateChatRoomDto } from './dto/create-chat-room.dto';
+import { ChatRoom } from './entities/chat-room.entity';
 
 @Controller('chat')
 export class ChatController {
@@ -24,9 +25,16 @@ export class ChatController {
     private readonly userService: UserService,
   ) {}
 
-  @Post()
-  async create(@Body() createData: CreateChatDto) {
-    return this.chatService.create(createData);
+  /**
+   * @summary 채팅방 생성 API
+   * @param createRoomData
+   * @returns
+   */
+  @Post('/chatroom')
+  async createChatRoom(
+    @Body() createRoomData: CreateChatRoomDto,
+  ): Promise<ChatRoom> {
+    return await this.chatService.createChatRoom(createRoomData);
   }
 
   /**
@@ -50,23 +58,21 @@ export class ChatController {
     return await this.chatRoomService.findChatRoomById(id, user.id);
   }
 
-  @Get()
-  findChats() {
-    return this.chatService.findAll();
+  // @Get('/chat/:roomId')
+  // async findChat(@Param('roomId') roomId: number): Promise<Chat[]> {
+  //   return await this.chatService.findChat(roomId);
+  // }
+
+  @Get('/chatroom/:userId/:modelId')
+  async findOneRoom(
+    @Param('userId') user: number,
+    @Param('modelId') model: number,
+  ): Promise<ChatRoom> {
+    return await this.chatService.findOneRoom(user, model);
   }
 
-  @Get()
-  findOneRoom() {
-    return this.chatService.findAll();
-  }
-
-  @Get()
-  findChatRooms() {
-    return this.chatService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.chatService.findOne(+id);
+  @Get('/chatroom/:userId')
+  async findUserRoom(@Param('userId') user: number): Promise<ChatRoom[]> {
+    return await this.chatService.findUserRoom(user);
   }
 }

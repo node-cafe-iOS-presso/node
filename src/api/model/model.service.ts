@@ -70,7 +70,11 @@ export class ModelService {
   }
 
   async findAll(): Promise<Model[]> {
-    return this.modelsRepository.find();
+    return this.modelsRepository.find({
+      order: {
+        updatedAt: 'DESC',
+      },
+    });
   }
 
   async findOne(id: number): Promise<Model> {
