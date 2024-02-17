@@ -72,7 +72,9 @@ export class ChatController {
   }
 
   @Get('/chatroom/:userId')
-  async findUserRoom(@Param('userId') user: number): Promise<ChatRoom[]> {
-    return await this.chatService.findUserRoom(user);
+  async findUserRoom(
+    @Param('userId', ParseIntPipe) userId: number,
+  ): Promise<ChatRoom[]> {
+    return await this.chatRoomService.findRecentChatRoomList(userId);
   }
 }

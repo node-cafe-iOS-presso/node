@@ -69,8 +69,23 @@ export class ModelService {
     };
   }
 
+  /**
+   * 사용자의 모든 모델 조회 API Service
+   * @returns
+   */
   async findAll(): Promise<Model[]> {
-    return this.modelsRepository.find({
+    return await this.modelsRepository.find({
+      order: {
+        updatedAt: 'DESC',
+      },
+    });
+  }
+
+  async findUserAll(userId: number): Promise<Model[]> {
+    return await this.modelsRepository.find({
+      where: {
+        userId: userId,
+      },
       order: {
         updatedAt: 'DESC',
       },

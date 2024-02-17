@@ -60,6 +60,7 @@ export class ChatRoomService {
       .createQueryBuilder()
       .select('cr.id', 'chatRoomId')
       .addSelect('m.name', 'modelName')
+      .addSelect('m.modelCoverImage', 'modelCoverImage')
       .from(ChatRoom, 'cr')
       .innerJoin(Chat, 'c', 'c.chatRoomId = cr.id')
       .innerJoin(Model, 'm', 'cr.modelId = m.id')

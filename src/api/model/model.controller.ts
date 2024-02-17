@@ -6,6 +6,7 @@ import {
   Param,
   HttpCode,
   HttpStatus,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { ModelService } from './model.service';
 import { CreateModelDto } from './dto/create-model.dto';
@@ -37,35 +38,27 @@ export class ModelController {
     return await this.modelService.create(user.id, modelData);
   }
 
+  /**
+   * @summary 사용자의 모든 모델 조회 API --> 홈화면의 최근 생성된 모델에 사용 가능
+   * @url     [GET] /model
+   */
   @Get()
   async findAll(): Promise<Model[]> {
-    return this.modelService.findAll();
+    return await this.modelService.findAll();
   }
 
-  // @Get('/user/:user')
-  // async findUserAll(@Param('user') userId: string): Promise<Model[]> {
-  //   return this.modelService.findUserAll(userId);
-  // }
+  @Get('/user/:user')
+  async findUserAll(
+    @Param('user', ParseIntPipe) userId: number,
+  ): Promise<Model[]> {
+    return this.modelService.findUserAll(userId);
+  }
 
   @Get('/id/:id')
   async findOne(@Param('id') modelId: number): Promise<Model> {
     return this.modelService.findOne(modelId);
   }
 
-  // @Patch('/:user/:id')
-  // async update(
-  //   @Param('id') modelId: number,
-  //   @Param('user') userId: string,
-  //   @Body() updateData: UpdateModelDto,
-  // ) {
-  //   return this.modelService.update(modelId, userId, updateData);
-  // }
-
-  // @Delete('/:user/:id')
-  // async remove(
-  //   @Param('id') modelId: number,
-  //   @Param('user') userId: string,
-  // ): Promise<Model[]> {
-  //   return this.modelService.remove(modelId, userId);
-  // }
+  // 최근 진행한 커피챗
+  // 유명인사 모델
 }

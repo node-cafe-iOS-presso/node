@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { EStatusColumn } from '../dto/create-model.dto';
+import { EStatusColumn } from '../types';
 
 @Entity({ name: 'model' })
 export class Model {
