@@ -16,10 +16,10 @@ export class Chat {
   chatRoomId!: number;
 
   @Column({ type: 'int', nullable: true })
-  senderId!: number;
+  senderId!: number | null;
 
   @Column({ type: 'int', nullable: true })
-  receiverId!: number;
+  receiverId!: number | null;
 
   @Column({ type: 'int' })
   modelId!: number;
