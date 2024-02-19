@@ -1,88 +1,129 @@
+# 🤖 나만의 AI, 내가 원하던 이와의 커피챗! Capella
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <img src="https://github.com/node-cafe-iOS-presso/node/assets/121025796/9f07ddbc-dc57-4bfd-9c9a-a9a34875f68c"/>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Acapella
-
-An application that customizes and creates the person you want to chat with.
-
-## Stack
-
-<div align=center> 
-<img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
-<img src="https://img.shields.io/badge/nestjs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white">
 <br>
-<img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white">
-<img src="https://img.shields.io/badge/express-000000?style=for-the-badge&logo=express&logoColor=white">
-<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
-<br>
-<img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
-<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
-<img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white">
-</div>
 
-## Installation
+## 프로젝트 소개
+- 가천대학교 IT 개발자 & 스타트업 경력개발방 커뮤니티에서 개최한 "제 2회 와글와글 해커톤"에 참여하여 1박2일 간 개발한 프로젝트입니다.
+- 나에게 맞는 AI와 직접 대화하며 대화의 부재와 관계적 피곤함을 모두 해결할 수 있는 프로덕트입니다.
+- 자신의 호기심과 상상력을 담은 AI를 직접 커스텀하고 경험함으로써 새로운 니즈를 만족시키고 의미 있는 연결을 이룹니다.
 
-```bash
-$ npm install
+<br/>
+
+## 팀원 구성
+|<img src="https://avatars.githubusercontent.com/u/121025796?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/110837337?v=4" width="150" height="150"/>
+|:-:|:-:|
+|이강욱<br/>[@iamkanguk97](https://github.com/iamkanguk97)|이한슬<br/>[@hanseul37](https://github.com/hanseul37)|
+
+<br/>
+
+## 개발 환경
+- Backend: NestJS, MySQL, TypeORM
+- Infra: AWS EC2, RDS
+- 버전관리: GitHub
+- 협업: Notion
+- 디자인: Figma
+- 외부 API: ChatGPT API (GPT-3.5-Turbo)
+
+<br/>
+
+## 브랜치 전략
+- main, dev, feature 브랜치를 사용했습니다.
+- main은 배포 단계에서만 활용한 branch이고, dev는 개발 단계에서 작업한 branch입니다. 그리고 feature 브랜치는 기능 단위로 사용하였습니다.
+
+<br/>
+
+## 프로젝트 구조
+```
+📦 
+├─ .eslintrc.js
+├─ .gitignore
+├─ .prettierrc
+├─ README.md
+├─ nest-cli.json
+├─ package-lock.json
+├─ package.json
+├─ src
+│  ├─ api
+│  │  ├─ chat
+│  │  │  ├─ chat.controller.spec.ts
+│  │  │  ├─ chat.controller.ts
+│  │  │  ├─ chat.module.ts
+│  │  │  ├─ chat.service.spec.ts
+│  │  │  ├─ chat.service.ts
+│  │  │  ├─ dto
+│  │  │  │  ├─ create-chat-room.dto.ts
+│  │  │  │  ├─ create-chat.dto.ts
+│  │  │  │  └─ post-chat-message.dto.ts
+│  │  │  └─ entities
+│  │  │     ├─ chat-room.entity.ts
+│  │  │     └─ chat.entity.ts
+│  │  ├─ chatgpt
+│  │  │  ├─ chatgpt.module.ts
+│  │  │  └─ chatgpt.service.ts
+│  │  ├─ model
+│  │  │  ├─ dto
+│  │  │  │  └─ create-model.dto.ts
+│  │  │  ├─ entities
+│  │  │  │  └─ model.entity.ts
+│  │  │  ├─ model.controller.spec.ts
+│  │  │  ├─ model.controller.ts
+│  │  │  ├─ model.module.ts
+│  │  │  ├─ model.service.spec.ts
+│  │  │  ├─ model.service.ts
+│  │  │  └─ types
+│  │  │     └─ index.ts
+│  │  └─ user
+│  │     ├─ dto
+│  │     │  ├─ create-user.dto.ts
+│  │     │  └─ update-user.dto.ts
+│  │     ├─ entities
+│  │     │  └─ user.entity.ts
+│  │     ├─ user.controller.spec.ts
+│  │     ├─ user.controller.ts
+│  │     ├─ user.module.ts
+│  │     ├─ user.service.spec.ts
+│  │     └─ user.service.ts
+│  ├─ app.controller.spec.ts
+│  ├─ app.controller.ts
+│  ├─ app.module.ts
+│  ├─ app.service.ts
+│  ├─ decorators
+│  │  └─ user-token.decorator.ts
+│  └─ main.ts
+├─ test
+│  ├─ app.e2e-spec.ts
+│  └─ jest-e2e.json
+├─ tsconfig.build.json
+├─ tsconfig.json
+└─ webpack-hmr.config.js
 ```
 
-## Running the app
+<br/>
 
-```bash
-# development
-$ npm run start
+## DB 테이블 구조
+<img width="1151" alt="Untitled" src="https://github.com/node-cafe-iOS-presso/node/assets/121025796/c59e1c7f-43d3-454f-a7bc-b7bb173b4bae">
 
-# watch mode
-$ npm run start:dev
+<br/>
 
-# production mode
-$ npm run start:prod
-```
+## 역할 분담
+### 이강욱
+- 사용자가 설정한 옵션에 따른 커스텀 AI 모델 구축
+- 채팅 관련 기능 (채팅 전송, 채팅 목록)
 
-## Test
+### 이한슬
+- 사용자 관련 기능 (로그인 등)
+- 홈화면 조회 기능 (사용자가 최근에 사용한 모델 리스트 등)
 
-```bash
-# unit tests
-$ npm run test
+<br/>
 
-# e2e tests
-$ npm run test:e2e
+## 기능 리스트
+추후 업데이트 예정
 
-# test coverage
-$ npm run test:cov
-```
+<br/>
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+## 기타 링크
+- [[회고] 제 2회 가천대학교 와글와글 해커톤 참여 후기](https://dev-iamkanguk.tistory.com/entry/%ED%9A%8C%EA%B3%A0-%EC%A0%9C-2%ED%9A%8C-%EA%B0%80%EC%B2%9C%EB%8C%80%ED%95%99%EA%B5%90-%EC%99%80%EA%B8%80%EC%99%80%EA%B8%80-%ED%95%B4%EC%BB%A4%ED%86%A4-%EC%B0%B8%EC%97%AC-%ED%9B%84%EA%B8%B0)
+- [발표자료 및 시연영상](https://drive.google.com/drive/folders/11OPHXpnf3bhppbVZPwdAUmnXfIMlbi3y)
